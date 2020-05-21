@@ -72,24 +72,54 @@ namespace Tests {
             Assert.NotNull(octaveTone);
         }
 
+        private static readonly object[] _majorScalesCases =
+    {
+        new object[] {"C",2,8,new List<string> {"C2", "D2", "E2", "F2", "G2", "A2", "B2", "C3" } },   //case 1
+        new object[] { "G", 2, 8, new List<string> { "G2", "A2", "B2", "C3", "D3", "E3", "F#3", "G3" } } //case 2
+    };
+
+        private static readonly object[] _minorScalesCases =
+    {
+        new object[] {"A",2,8,new List<string> { "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"} },   //case 1
+        new object[] { "C", 2, 8, new List<string> { "C2", "D2", "D#2", "F2", "G2", "G#2", "A#2", "C3" } } //case 2
+    };
+
         [Test]
-        [TestCase("C", 2,8)]
-        [TestCase("G", 2,8)]
-        public void GetScaleTest(string note,int octave, int count) {
+        [TestCaseSource(nameof(_majorScalesCases))]
+        public void GetMajorScaleTest(string note,int octave, int count,List<string> expected) {
             ToneController toneController = new ToneController();
             OctaveTone tone = toneController.GetOctaveTone(note, octave);
-            List<OctaveTone> scale = toneController.GetScale(tone, count);
+            List<OctaveTone> scale = toneController.GetScale(tone, count, ToneController.MajorScale);
             Assert.NotNull(scale);
             Assert.IsNotEmpty(scale);
             Assert.AreEqual(count,scale.Count);
+            for (int i = 0; i < count; i++) {
+                Assert.AreEqual(expected[i], scale[i].Name);                
+            }
+            
+        }
+
+        [Test]
+        [TestCaseSource(nameof(_minorScalesCases))]
+        public void GetMinorScaleTest(string note, int octave, int count, List<string> expected) {
+            ToneController toneController = new ToneController();
+            OctaveTone tone = toneController.GetOctaveTone(note, octave);
+            List<OctaveTone> scale = toneController.GetScale(tone, count, ToneController.NaturalMinorScale);
+            Assert.NotNull(scale);
+            Assert.IsNotEmpty(scale);
+            Assert.AreEqual(count, scale.Count);
+            for (int i = 0; i < count; i++) {
+                Assert.AreEqual(expected[i], scale[i].Name);
+            }
+
         }
 
         [Test]
         [TestCase("C", 2,"C#2")]
         [TestCase("E", 2,"F2")]
-        [TestCase("G#", 2,"A3")]
+        [TestCase("G#", 2,"A2")]
         [TestCase("A", 3,"A#3")]
-        [TestCase("B", 3,"C3")]
+        [TestCase("B", 3,"C4")]
         public void GetNextSemiToneTest(string note, int octave, string semiToneName) {
             ToneController toneController = new ToneController();
             OctaveTone tone = toneController.GetOctaveTone(note,octave);

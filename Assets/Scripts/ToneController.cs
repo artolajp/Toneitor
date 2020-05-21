@@ -3,15 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Toneitor {
-    public class ToneController : MonoBehaviour {
-
-        [SerializeField] [Range(10, 240)] private float tempo = 60f;
-
-        [SerializeField] private ProceduralAudio proceduralAudio;
-
-        public float[] rithm = new float[] { 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
+    public class ToneController {
 
         public static readonly List<bool> MajorScale = new List<bool>() { true,true,false,true,true,true,false};
+        public static readonly List<bool> NaturalMinorScale = new List<bool>() { true,false,true,true,false,true,true};
 
         private Tone [] tones;
 
@@ -24,28 +19,6 @@ namespace Toneitor {
             return null;
         }
 
-
-        //private float[] tones = new float[]{
-        //220,246.94f,261.63f,293.66f,329.63f, 349.23f,392,
-        //440,493.88f,523.25f,587.33f,659.26f,698.46f,789.99f};
-
-        private IEnumerator Start() {
-            int index = 0;
-            List<OctaveTone> scale = GetScale(GetOctaveTone("G",4),10);
-            while (true) {
-                OctaveTone octaveTone = scale[UnityEngine.Random.Range(0,9)];
-                proceduralAudio.frequency = octaveTone.Frequency;
-                Debug.Log(octaveTone.Name);
-                yield return new WaitForSeconds(rithm[index] * 60 / tempo);
-                proceduralAudio.frequency = 0;
-                yield return new WaitForEndOfFrame();
-                index++;
-                if (index >= rithm.Length) {
-                    index = 0;
-                }
-            }
-        }
-
         public OctaveTone GetOctaveTone(string noteName, int octave) {
             Tone tone = GetTone(noteName);
             if (tone!=null)
@@ -56,6 +29,7 @@ namespace Toneitor {
 
         public Tone [] LoadTones() {
             tones = Resources.LoadAll<Tone>("");
+            Array.Sort(tones);
             return tones;
         }
 
@@ -79,6 +53,7 @@ namespace Toneitor {
             for (int i = 0; i < length; i++) {
                 if (tones[i] == tone.Tone) indexTone = i;
             }
+
             if (indexTone < 0)
                 return null;
             else if (indexTone < length - 1)
@@ -87,15 +62,14 @@ namespace Toneitor {
                 return new OctaveTone(tones[0], tone.Octave + 1);
         }
 
-        public List<OctaveTone> GetScale(OctaveTone tone, int count) {
-
+        public List<OctaveTone> GetScale(OctaveTone tone, int count,List<bool> pattern) {
             List<OctaveTone> scale = new List<OctaveTone>(count);
             scale.Add(tone);
             OctaveTone semiTone = tone;
-            int scaleLength = MajorScale.Count;
+            int scaleLength = pattern.Count;
             for (int i = 0; i < count-1; i++) {
                 semiTone = GetNextSemiTone(semiTone);
-                if(MajorScale[i% scaleLength]) {
+                if(pattern[i% scaleLength]) {
                     semiTone = GetNextSemiTone(semiTone);
                 }
                 scale.Add(semiTone);
