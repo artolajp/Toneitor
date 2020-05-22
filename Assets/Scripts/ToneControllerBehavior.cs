@@ -10,25 +10,36 @@ namespace Toneitor
 
         [SerializeField] private ProceduralAudio proceduralAudio;
 
+        [SerializeField] private string startTone = "C";
+        [SerializeField] private int startOctave = 2;
+
         [SerializeField] private float[] rithm = new float[] { 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
 
         [SerializeField] [Range(10, 240)] private float tempo = 60f;
 
+        private List<OctaveTone> currentScale;
+
         private IEnumerator Start() {
             int index = 0;
-            List<OctaveTone> scale = tc.GetScale(tc.GetOctaveTone("G", 3), 12, ToneController.MajorScale);
+            currentScale = tc.GetScale(tc.GetOctaveTone(startTone, startOctave), 12, ToneController.MajorScale);
+            OctaveTone octaveTone;
+            int rithmLenght = rithm.Length;
+            float time = 0;
             while (true) {
-                OctaveTone octaveTone = scale[UnityEngine.Random.Range(0, 9)];
+                octaveTone = currentScale[UnityEngine.Random.Range(0, 9)];
                 proceduralAudio.frequency = octaveTone.Frequency;
-                Debug.Log(octaveTone.Name);
-                yield return new WaitForSeconds(rithm[index] * 60 / tempo);
+                //Debug.Log(octaveTone.Name);
+                time = rithm[index] * 60 / tempo;
+                yield return new WaitForSeconds(time);
                 proceduralAudio.frequency = 0;
                 yield return new WaitForEndOfFrame();
                 index++;
-                if (index >= rithm.Length) {
+                if (index >= rithmLenght) {
                     index = 0;
                 }
             }
         }
+
+
     }
 }
