@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using Toneitor;
 using UnityEngine;
@@ -7,10 +8,19 @@ using UnityEngine.TestTools;
 
 namespace Tests {
 
-    public class TestScript {
+    public class TestToneController {
+
+        private ToneController toneController;
+
+        [OneTimeSetUp]
+        public void Setup() {
+            toneController = new ToneController();
+            //Substitute.For<ToneController>();
+        }
+
         [Test]
         public void LoadTonesTest() {
-            ToneController toneController = new ToneController();
+             
             Tone[] tones = toneController.LoadTones();
             Assert.NotNull(tones);
             Assert.Greater(tones.Length, 0);
@@ -19,7 +29,7 @@ namespace Tests {
         [Test]
         [TestCase("A", 27.5f)]
         public void GetToneTest(string toneName, float frequency) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             Tone tone = toneController.GetTone("A");
             Assert.NotNull(tone);
             Assert.AreEqual(frequency, tone.BaseFrequency);
@@ -28,7 +38,7 @@ namespace Tests {
         [Test]
         [TestCase("A", 4, 440)]
         public void OctaveToneTest(string toneName, int octave, float frequency) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             Tone tone = toneController.GetTone("A");
             OctaveTone octaveTone = new OctaveTone(tone, octave);
             Assert.AreEqual(toneName, octaveTone.ToneName);
@@ -40,7 +50,7 @@ namespace Tests {
 
         [Test]
         public void GetRandomToneTest() {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             Tone tone = toneController.GetRandomTone();
             Assert.NotNull(tone);
             Assert.Greater(tone.BaseFrequency, 0);
@@ -49,7 +59,7 @@ namespace Tests {
         [Test]
         [TestCase("A", 2)]
         public void GetOctaveToneTest(string note, int octave) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone octaveTone = toneController.GetOctaveTone(note, octave);
             OctaveTone octaveToneBase = toneController.GetOctaveTone(note, 0);
             Assert.NotNull(octaveTone);
@@ -59,7 +69,7 @@ namespace Tests {
 
         [Test]
         public void GetRandomOctaveToneTest() {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone octaveTone = toneController.GetRandomOctaveTone();
             Assert.NotNull(octaveTone);
         }
@@ -67,7 +77,7 @@ namespace Tests {
         [Test]
         [TestCase(3)]
         public void GetRandomOctaveToneTest(int octave) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone octaveTone = toneController.GetRandomOctaveTone(octave);
             Assert.NotNull(octaveTone);
         }
@@ -87,7 +97,7 @@ namespace Tests {
         [Test]
         [TestCaseSource(nameof(_majorScalesCases))]
         public void GetMajorScaleTest(string note,int octave, int count,List<string> expected) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone tone = toneController.GetOctaveTone(note, octave);
             List<OctaveTone> scale = toneController.GetScale(tone, count, ToneController.MajorScale);
             Assert.NotNull(scale);
@@ -102,7 +112,7 @@ namespace Tests {
         [Test]
         [TestCaseSource(nameof(_minorScalesCases))]
         public void GetMinorScaleTest(string note, int octave, int count, List<string> expected) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone tone = toneController.GetOctaveTone(note, octave);
             List<OctaveTone> scale = toneController.GetScale(tone, count, ToneController.NaturalMinorScale);
             Assert.NotNull(scale);
@@ -121,7 +131,7 @@ namespace Tests {
         [TestCase("A", 3,"A#3")]
         [TestCase("B", 3,"C4")]
         public void GetNextSemiToneTest(string note, int octave, string semiToneName) {
-            ToneController toneController = new ToneController();
+            //ToneController toneController = new ToneController();
             OctaveTone tone = toneController.GetOctaveTone(note,octave);
             OctaveTone semiTone = toneController.GetNextSemiTone(tone);
             Assert.NotNull(semiTone);

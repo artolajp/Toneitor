@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Toneitor
 {
+    [RequireComponent(typeof(ProceduralAudio))]
     public class ToneControllerBehavior : MonoBehaviour
     {
 
         private ToneController tc = new ToneController();
 
-        [SerializeField] private ProceduralAudio proceduralAudio;
+        private ProceduralAudio proceduralAudio;
 
         [SerializeField] private string startTone = "C";
         [SerializeField] private int startOctave = 2;
@@ -20,19 +21,28 @@ namespace Toneitor
 
         private List<OctaveTone> currentScale;
 
-        private IEnumerator Start() {
+        private bool isPlaying;
+        public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
+
+        private void Start() {
+            proceduralAudio = GetComponent<ProceduralAudio>();
+            StartCoroutine( PlayTone());
+        }
+
+        private IEnumerator PlayTone() {
             int index = 0;
             currentScale = tc.GetScale(tc.GetOctaveTone(startTone, startOctave), longScale, ToneController.MajorScale);
             OctaveTone octaveTone;
             int rithmLenght = rithm.Length;
             float time = 0;
-            while (true) {
+            isPlaying = true;
+            while (isPlaying) {
                 octaveTone = currentScale[UnityEngine.Random.Range(0, longScale)];
-                proceduralAudio.frequency = octaveTone.Frequency;
+                proceduralAudio.Frequency = octaveTone.Frequency;
                 //Debug.Log(octaveTone.Name);
                 time = rithm[index] * 60 / tempo;
-                yield return new WaitForSeconds(time);
-                proceduralAudio.frequency = 0;
+                yield return new WaitForSecondsRealtime(time);
+                proceduralAudio.Frequency = 0;
                 yield return new WaitForEndOfFrame();
                 index++;
                 if (index >= rithmLenght) {

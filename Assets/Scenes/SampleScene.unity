@@ -3754,7 +3754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1154184542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5439,12 +5439,12 @@ GameObject:
   - component: {fileID: 1846332216}
   - component: {fileID: 1846332215}
   m_Layer: 0
-  m_Name: Main Camera (3)
+  m_Name: Procedural Audio
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1846332215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5457,8 +5457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proceduralAudio: {fileID: 1846332216}
-  startTone: F
+  startTone: D
   startOctave: 4
   longScale: 3
   rithm:
@@ -5485,11 +5484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseRatio: 0
-  offset: 0
-  cutoffOn: 800
-  cutoffOff: 100
-  cutOff: 0
   frequency: 440
   gain: 0.02
 --- !u!169 &1846332217
@@ -6231,18 +6225,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2007139429}
-  - component: {fileID: 2007139427}
   - component: {fileID: 2007139428}
-  - component: {fileID: 2007139426}
   - component: {fileID: 2007139425}
   - component: {fileID: 2007139424}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Procedural Audio
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2007139424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6255,8 +6247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proceduralAudio: {fileID: 2007139425}
-  startTone: F
+  startTone: D
   startOctave: 2
   longScale: 8
   rithm:
@@ -6277,46 +6268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseRatio: 0
-  offset: 0
-  cutoffOn: 800
-  cutoffOff: 100
-  cutOff: 0
   frequency: 440
   gain: 0.05
---- !u!169 &2007139426
-AudioLowPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007139423}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_LowpassResonanceQ: 4.17
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.22727273
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!81 &2007139427
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007139423}
-  m_Enabled: 0
 --- !u!82 &2007139428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6798,12 +6751,12 @@ GameObject:
   - component: {fileID: 2058454351}
   - component: {fileID: 2058454350}
   m_Layer: 0
-  m_Name: Main Camera (2)
+  m_Name: Procedural Audio
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2058454350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6816,8 +6769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proceduralAudio: {fileID: 2058454351}
-  startTone: F
+  startTone: D
   startOctave: 3
   longScale: 8
   rithm:
@@ -6840,11 +6792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseRatio: 0
-  offset: 0
-  cutoffOn: 800
-  cutoffOff: 100
-  cutOff: 0
   frequency: 440
   gain: 0.05
 --- !u!169 &2058454352
@@ -6890,7 +6837,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6deead94a4ae03844939c0d0e49936f5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
