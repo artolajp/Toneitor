@@ -5158,7 +5158,7 @@ GameObject:
   - component: {fileID: 1762546401}
   - component: {fileID: 1762546404}
   m_Layer: 5
-  m_Name: GameObject (2)
+  m_Name: ToneButtons Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5457,6 +5457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  proceduralAudio: {fileID: 0}
   startTone: D
   startOctave: 4
   longScale: 3
@@ -5484,6 +5485,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseRatio: 0.5
+  offset: 0
+  cutoffOn: 800
+  cutoffOff: 100
+  cutOff: 0
   frequency: 440
   gain: 0.02
 --- !u!169 &1846332217
@@ -6247,6 +6253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  proceduralAudio: {fileID: 0}
   startTone: D
   startOctave: 2
   longScale: 8
@@ -6268,6 +6275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseRatio: 0.5
+  offset: 0
+  cutoffOn: 800
+  cutoffOff: 100
+  cutOff: 0
   frequency: 440
   gain: 0.05
 --- !u!82 &2007139428
@@ -6769,6 +6781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69fad2f887282d45a3e0f7f4f344ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  proceduralAudio: {fileID: 0}
   startTone: D
   startOctave: 3
   longScale: 8
@@ -6792,6 +6805,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cb9769e65b44f40a16e7bdfb7b098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseRatio: 0.5
+  offset: 0
+  cutoffOn: 800
+  cutoffOff: 100
+  cutOff: 0
   frequency: 440
   gain: 0.05
 --- !u!169 &2058454352
