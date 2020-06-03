@@ -15,7 +15,6 @@ namespace Tests {
         [OneTimeSetUp]
         public void Setup() {
             toneController = new ToneController();
-            //Substitute.For<ToneController>();
         }
 
         [Test]

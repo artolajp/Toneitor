@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Toneitor
 {
     [RequireComponent(typeof(ProceduralAudio))]
-    public class ToneControllerBehavior : MonoBehaviour
+    public class ToneControllerBehaviour : MonoBehaviour, IToneControllerBehaviour
     {
 
         private ToneController tc = new ToneController();
@@ -15,21 +15,25 @@ namespace Toneitor
         [SerializeField] private int startOctave = 2;
         [SerializeField] private int longScale = 8;
 
-        [SerializeField] private float[] rithm = new float[] { 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
+        [SerializeField] private float[] rithm ={ 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
 
         [SerializeField] [Range(10, 240)] private float tempo = 60f;
 
         private List<OctaveTone> currentScale;
 
         private bool isPlaying;
-        public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
+        public bool IsPlaying { get => isPlaying;}
+
+        private OctaveTone currentTone;
+
+        OctaveTone IToneControllerBehaviour.CurrentTone => currentTone;
 
         private void Start() {
             proceduralAudio = GetComponent<ProceduralAudio>();
-            StartCoroutine( PlayTone());
+            StartCoroutine(PlayToneRoutine());
         }
 
-        private IEnumerator PlayTone() {
+        private IEnumerator PlayToneRoutine() {
             int index = 0;
             currentScale = tc.GetScale(tc.GetOctaveTone(startTone, startOctave), longScale, ToneController.MajorScale);
             OctaveTone octaveTone;
@@ -38,11 +42,11 @@ namespace Toneitor
             isPlaying = true;
             while (isPlaying) {
                 octaveTone = currentScale[UnityEngine.Random.Range(0, longScale)];
-                proceduralAudio.Frequency = octaveTone.Frequency;
+                PlayTone(octaveTone);
                 //Debug.Log(octaveTone.Name);
                 time = rithm[index] * 60 / tempo;
                 yield return new WaitForSecondsRealtime(time);
-                proceduralAudio.Frequency = 0;
+                MuteTone();
                 yield return new WaitForEndOfFrame();
                 index++;
                 if (index >= rithmLenght) {
@@ -50,7 +54,17 @@ namespace Toneitor
                 }
             }
         }
-        
+
+        public void PlayTone(OctaveTone octaveTone) {
+            currentTone = octaveTone;
+            proceduralAudio.Frequency = octaveTone.Frequency;
+        }
+
+        public void MuteTone() {
+            currentTone = null;
+            proceduralAudio.Frequency = 0;
+        }
+
 
     }
 }

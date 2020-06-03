@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73824c3ff6cbc6a45aeb0d2fb4abeeb0, type: 3}
   m_Name: 5E
   m_EditorClassIdentifier: 
-  toneName: E
+  toneNameLatin: Mi
+  toneNameLatinAlt: Mi
+  toneNameEnglish: E
+  toneNameEnglishAlt: E
+  toneNameGerman: E
+  toneNameGermanAlt: E
+  toneNatural: 1
   baseFrequency: 20.6017

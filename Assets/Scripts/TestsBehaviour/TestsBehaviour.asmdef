@@ -1,13 +1,11 @@
 {
-    "name": "TestsTones",
+    "name": "TestsBehaviour",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Toneitor"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
