@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 namespace Toneitor
 {
@@ -12,7 +13,7 @@ namespace Toneitor
         private ProceduralAudio proceduralAudio;
 
         [SerializeField] private string startTone = "C";
-        [SerializeField] private int startOctave = 2;
+        [SerializeField] private int startOctave = 3;
         [SerializeField] private int longScale = 8;
 
         [SerializeField] private float[] rithm ={ 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
@@ -28,9 +29,25 @@ namespace Toneitor
 
         OctaveTone IToneControllerBehaviour.CurrentTone => currentTone;
 
+        [SerializeField] private UIToneKeyboard toneKeyboard=null;
+        [SerializeField] private TextMeshProUGUI feedbackText=null;
+
+        private int streak;
+
         private void Start() {
             proceduralAudio = GetComponent<ProceduralAudio>();
-            StartCoroutine(PlayToneRoutine());
+            MuteTone();
+            //StartCoroutine(PlayToneRoutine());
+            List<OctaveTone> keyboardTones = new List<OctaveTone>(12);            
+            OctaveTone currentTone = tc.GetOctaveTone("C", startOctave);
+            for (int i = 0; i < 12; i++) {
+                keyboardTones.Add(currentTone);
+                currentTone = tc.GetNextSemiTone(currentTone);
+            }
+            toneKeyboard.SetKeyboard(keyboardTones, CheckTone);
+            PlayRandomTone();
+            feedbackText.text = "Choose your destiny!";
+            streak = 0;
         }
 
         private IEnumerator PlayToneRoutine() {
@@ -65,6 +82,27 @@ namespace Toneitor
             proceduralAudio.Frequency = 0;
         }
 
+        private void CheckTone(OctaveTone octaveTone) {
+            if (currentTone.Tone== octaveTone.Tone) {
+                PlayRandomTone();
+                Debug.Log("YEA!");
+                streak++;
+                feedbackText.text = "Yeah " + streak+"!";
+                
+            } else {
+                Debug.Log("NO! Expected "+ currentTone.ToneName);
+                feedbackText.text = "<color=red>Oh no!</color>";
+                streak = 0; 
+            }
+        }
+
+        private void PlayRandomTone() {
+            if (streak > 5) {
+                PlayTone(tc.GetRandomOctaveTone(3));
+            } else {
+                PlayTone(tc.GetScale(tc.GetOctaveTone("C",3), 7, ToneController.MajorScale)[Random.Range(0,7)]);
+            }
+        }
 
     }
 }

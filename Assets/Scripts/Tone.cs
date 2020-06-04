@@ -7,7 +7,7 @@ public class Tone : ScriptableObject, IComparable<Tone> {
 
     public enum Naming{ Latin,English,German}
 
-    public static Naming CurrentNaming = Naming.Latin;
+    public static Naming CurrentNaming = Naming.English;
 
     [SerializeField] private string toneNameLatin ="" ;
     [SerializeField] private string toneNameLatinAlt ="";
@@ -16,6 +16,8 @@ public class Tone : ScriptableObject, IComparable<Tone> {
     [SerializeField] private string toneNameGerman = "";
     [SerializeField] private string toneNameGermanAlt = "";
     [SerializeField] private bool toneNatural = true;
+    public bool ToneNatural { get => toneNatural;}
+
     public string ToneNameLatin { get => toneNameLatin; }
     public string ToneNameEnglish { get => toneNameEnglish; }
     public string ToneNameGerman { get => toneNameGerman; }
@@ -52,6 +54,7 @@ public class Tone : ScriptableObject, IComparable<Tone> {
             }
         }
     }
+
 
     public int CompareTo(Tone obj) {
         return baseFrequency.CompareTo(obj.baseFrequency);
