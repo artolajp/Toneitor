@@ -42,13 +42,13 @@ namespace Toneitor
             PlayRandomTone();
             feedbackText.text = "Choose your destiny!";
             streak = 0;
-            StartCoroutine( PlayToneRoutine());
+            //StartCoroutine( PlayToneRoutine());
         }
 
         private void CheckTone(OctaveTone octaveTone) {
+            
             if (currentTone.Tone == octaveTone.Tone) {
                 PlayRandomTone();
-                Debug.Log("YEA!");
                 streak++;
                 feedbackText.text = "Yeah " + streak + "!";
 
@@ -56,15 +56,23 @@ namespace Toneitor
                 Debug.Log("NO! Expected " + currentTone.ToneName);
                 feedbackText.text = "<color=red>Oh no!</color>";
                 streak = 0;
+                soundController.PlayTone(octaveTone, 1);
             }
         }
 
         private void PlayRandomTone() {
-            if (streak > 5) {
-                soundController.PlayTone(toneController.GetRandomOctaveTone(3),5);
-            } else {
-                soundController.PlayTone(toneController.GetScale(toneController.GetOctaveTone("C", 3), 7, ToneController.MajorScale)[Random.Range(0, 7)],5);
-            }
+            soundController.MuteTone(currentTone);
+            OctaveTone newTone;
+            do  {
+                if (streak > 5) {
+                    newTone = toneController.GetRandomOctaveTone(3);
+                } else {
+                    newTone = toneController.GetScale(toneController.GetOctaveTone("C", 3), 7, ToneController.MajorScale)[Random.Range(0, 7)];
+                }
+            } while (newTone.Equals(currentTone));
+
+            currentTone = newTone;
+            soundController.PlayTone(currentTone, 0);
         }
 
 

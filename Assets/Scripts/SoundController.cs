@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Media;
 using UnityEngine;
 namespace Toneitor
 {
@@ -41,16 +42,31 @@ namespace Toneitor
             if (controller == null) {
                 controller = NewToneController();
             }
-            controller.IsInUse = true;
-
             StartCoroutine(PlayToneRoutine(controller, tone, seg));
             return 0;
         }
 
+        public void MuteTone(OctaveTone tone) {
+            if (tone == null) return;
+            controllers.ForEach(controller => {
+                if (controller.IsInUse && controller.GetCurrentTone == tone) controller.MuteTone() ; 
+            }
+            );
+        }
+
         private IEnumerator PlayToneRoutine(ToneControllerBehaviour toneController, OctaveTone tone, float seg) {
+
+            toneController.IsInUse = true;
             toneController.PlayTone(tone);
-            yield return new WaitForSeconds(seg);
-            toneController.IsInUse = false;
+            if (seg > 0) {
+                yield return new WaitForSeconds(seg);
+                toneController.IsInUse = false;
+            } else {
+                do {
+                    yield return new WaitForEndOfFrame();                    
+                } while (toneController.GetCurrentTone != null);
+                toneController.IsInUse = false;
+            }
         }
     }
 }

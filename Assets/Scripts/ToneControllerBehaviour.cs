@@ -15,17 +15,17 @@ namespace Toneitor
 
         private bool isInUse;
         public bool IsInUse {
-            get { return isInUse; }
+            get => isInUse;
             set {
                 if (!value) {
                     MuteTone();
                 }
                 isInUse = value;
-                
             }
         }
 
         private OctaveTone currentTone;
+        public OctaveTone GetCurrentTone => currentTone;
 
         OctaveTone IToneControllerBehaviour.CurrentTone => currentTone;
 
