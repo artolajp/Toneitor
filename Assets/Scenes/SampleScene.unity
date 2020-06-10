@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 471616808}
   - component: {fileID: 471616807}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Bottom Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4464,7 +4464,7 @@ GameObject:
   - component: {fileID: 1181660006}
   - component: {fileID: 1181660007}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Metronomo Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4638,7 +4638,7 @@ GameObject:
   - component: {fileID: 1438145120}
   - component: {fileID: 1438145119}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5867,7 +5867,7 @@ GameObject:
   - component: {fileID: 1611855906}
   - component: {fileID: 1611855905}
   m_Layer: 5
-  m_Name: Button
+  m_Name: up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6503,7 +6503,7 @@ GameObject:
   - component: {fileID: 1815922452}
   - component: {fileID: 1815922451}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Summit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
