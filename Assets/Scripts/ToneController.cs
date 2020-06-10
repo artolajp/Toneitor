@@ -8,10 +8,13 @@ namespace Toneitor {
         public static readonly List<bool> MajorScale = new List<bool>() { true,true,false,true,true,true,false};
         public static readonly List<bool> NaturalMinorScale = new List<bool>() { true,false,true,true,false,true,true};
 
-        private Tone [] tones;
+        private static Tone[] tones;
+
+        public ToneController() {
+            LoadTones();
+        }
 
         public Tone GetTone(string toneName) {
-            if (tones == null) LoadTones();
             int length = tones.Length;
             for(int i  = 0; i< length;i++) {
                 if (tones[i].ToneName == toneName) return tones[i];
@@ -34,7 +37,6 @@ namespace Toneitor {
         }
 
         public Tone GetRandomTone() {
-            if(tones==null)LoadTones();
             return tones[UnityEngine.Random.Range(0, tones.Length)];
         }
 
@@ -47,7 +49,6 @@ namespace Toneitor {
         }
 
         public OctaveTone GetNextSemiTone(OctaveTone tone) {
-            if (tones == null) LoadTones();
             int indexTone = -1;
             int length = tones.Length;
             for (int i = 0; i < length; i++) {
