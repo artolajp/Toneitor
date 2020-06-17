@@ -5,6 +5,13 @@ using UnityEngine;
 namespace Toneitor {
     public class ToneController {
 
+        private static ToneController instance;
+        public static ToneController Instance {
+            get {
+                return instance ?? new ToneController();
+            }
+        }
+
         public static readonly List<bool> MajorScale = new List<bool>() { true,true,false,true,true,true,false};
         public static readonly List<bool> NaturalMinorScale = new List<bool>() { true,false,true,true,false,true,true};
 

@@ -555,7 +555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 321.30173, y: -346.37036}
+  m_AnchoredPosition: {x: 321.30078, y: -346.37036}
   m_SizeDelta: {x: 642.60345, y: 98.074066}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &144896283
@@ -1027,6 +1027,7 @@ GameObject:
   - component: {fileID: 471616809}
   - component: {fileID: 471616808}
   - component: {fileID: 471616807}
+  - component: {fileID: 471616811}
   m_Layer: 5
   m_Name: Bottom Button
   m_TagString: Untagged
@@ -1154,6 +1155,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471616805}
   m_CullTransparentMesh: 0
+--- !u!114 &471616811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471616805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &492779948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,7 +4190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107379165}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5557b88848300044c8c7e0085ef298a8, type: 3}
   m_Name: 
@@ -4521,6 +4535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181660006}
+  - component: {fileID: 1181660008}
   - component: {fileID: 1181660007}
   m_Layer: 5
   m_Name: Metronomo Panel
@@ -4577,6 +4592,24 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &1181660008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181660005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2c8e08c78d9b74883078c3ed880f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upButton: {fileID: 1611855906}
+  downButton: {fileID: 471616808}
+  okButton: {fileID: 1815922452}
+  numberText: {fileID: 1438145119}
+  metronomeToneLong: 0.25
+  metronomeTone: A
 --- !u!1 &1435031306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,7 +4653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 208.71143, y: -775.96094}
+  m_AnchoredPosition: {x: 208.71094, y: -775.96094}
   m_SizeDelta: {x: 397.4233, y: 588.07825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435031308
@@ -5504,7 +5537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 167.30078, y: -440.1631}
+  m_AnchoredPosition: {x: 167.30078, y: -440.1621}
   m_SizeDelta: {x: 314.60123, y: 82.93416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505677587
@@ -5925,6 +5958,7 @@ GameObject:
   - component: {fileID: 1611855907}
   - component: {fileID: 1611855906}
   - component: {fileID: 1611855905}
+  - component: {fileID: 1611855909}
   m_Layer: 5
   m_Name: up Button
   m_TagString: Untagged
@@ -6052,6 +6086,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611855903}
   m_CullTransparentMesh: 0
+--- !u!114 &1611855909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611855903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1616433645
 GameObject:
   m_ObjectHideFlags: 0

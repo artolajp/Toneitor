@@ -6,6 +6,15 @@ namespace Toneitor
 {
     public class SoundController : MonoBehaviour
     {
+        private static SoundController instance;
+        public static SoundController Instance {
+            get {
+                return instance ?? FindObjectOfType<SoundController>() ;
+            }
+        }
+         
+
+
         [SerializeField] private ToneControllerBehaviour toneControllerBehaviourPrefab = null;
 
         [SerializeField] private Transform toneControllersContainers = null;
