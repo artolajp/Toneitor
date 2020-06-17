@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class MetronomeController : MonoBehaviour
 {
-    [SerializeField] private Button upButton;
-    [SerializeField] private Button downButton;
+    [SerializeField] private UIButton upButton;
+    [SerializeField] private UIButton downButton;
     [SerializeField] private Button okButton;
     [SerializeField] private TextMeshProUGUI numberText;
 
@@ -41,8 +41,10 @@ public class MetronomeController : MonoBehaviour
 
     private void Awake() {
         currentTempo = 60;
-        upButton.onClick.AddListener(OnUpButtonClick);
-        downButton.onClick.AddListener(OnDownButtonClick);
+        upButton.OnClickListener= OnUpButtonClick;
+        upButton.OnHoldListener= OnUpButtonClick;
+        downButton.OnClickListener=OnDownButtonClick;
+        downButton.OnHoldListener = OnDownButtonClick;
         okButton.onClick.AddListener(OnOkButtonClick);
     }
     private void Start() {

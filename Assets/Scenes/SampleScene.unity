@@ -5956,6 +5956,7 @@ GameObject:
   - component: {fileID: 1611855904}
   - component: {fileID: 1611855908}
   - component: {fileID: 1611855907}
+  - component: {fileID: 1611855910}
   - component: {fileID: 1611855906}
   - component: {fileID: 1611855905}
   - component: {fileID: 1611855909}
@@ -6098,11 +6099,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
+  m_Delegates: []
+--- !u!114 &1611855910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611855903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5721a67887ce0bd4abb4932f0d206f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToHold: 1
+  timeToRepeat: 1
+  aceleration: 1.5
 --- !u!1 &1616433645
 GameObject:
   m_ObjectHideFlags: 0
