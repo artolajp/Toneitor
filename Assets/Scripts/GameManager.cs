@@ -14,11 +14,15 @@ namespace Toneitor
 
         private int streak;
 
+        [Space]
+
         [SerializeField] private string startTone = "C";
         [SerializeField] private int startOctave = 3;
         [SerializeField] private int longScale = 8;
 
-        [SerializeField] private float[] rithm = { 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };
+        [Space]
+
+        [SerializeField] private float[] rithm = { 1, 0.5f, 0.5f, 1, 0.5f, 0.5f };        
 
         [SerializeField] [Range(10, 240)] private float tempo = 60f;
 

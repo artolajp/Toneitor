@@ -8,7 +8,9 @@ namespace Toneitor {
         private static ToneController instance;
         public static ToneController Instance {
             get {
-                return instance ?? new ToneController();
+
+                if(instance==null) instance = new ToneController();
+                return instance;
             }
         }
 
